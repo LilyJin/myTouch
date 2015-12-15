@@ -18,7 +18,7 @@ var touch = (function () {
     //判断是否支持touch事件
     var isTouch = "ontouchstart" in window, endEvent = isTouch ? "touchend" : "click";
 
-    //计算是否发生滑动(偏移30px以上我们认为是发生了滑动)
+    //计算是否发生滑动(偏移30px以上认为是发生了滑动)
     var isSwipe = function () {
         var arg = arguments, strX = arg[0], endX = arg[1], strY = arg[2], endY = arg[3];
         return Math.abs(strX - endX) > 30 || Math.abs(strY - endY) > 30;
@@ -30,14 +30,14 @@ var touch = (function () {
         return Math.abs(strX - endX) >= Math.abs(strY - endY) ? (strX - endX > 0 ? "Left" : "Right") : (strY - endY > 0 ? "Up" : "Down");
     };
 
-    //触摸开始:我们只需要记住当前起始位置的坐标
+    //触摸开始:只需要记住当前起始位置的坐标
     var touchStart = function (e, evenName) {
         var touchPoint = e.touches[0];
         this["strX" + evenName] = touchPoint.pageX;
         this["strY" + evenName] = touchPoint.pageY;
     };
 
-    //触摸移动:我们随时记录最新的位置信息
+    //触摸移动:随时记录最新的位置信息
     var touchMove = function (e, evenName) {
         var touchPoint = e.touches[0];
         this["endX" + evenName] = touchPoint.pageX;
